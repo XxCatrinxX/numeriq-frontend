@@ -30,6 +30,13 @@ export default function AuthenticatedLayout({ header, children }) {
                                 >
                                     Dashboard
                                 </NavLink>
+
+                                <NavLink
+                                    href={route('videos.create')}
+                                    active={route().current('videos.create')}
+                                >
+                                    Subir Curso
+                                </NavLink>
                             </div>
                         </div>
 
