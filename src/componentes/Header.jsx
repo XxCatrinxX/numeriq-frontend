@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import Contenido from './Contenido';
 
 export default function Header() {
   return (
@@ -18,7 +19,7 @@ export default function Header() {
 
       <nav className="nav-links">
         <a href="#">INICIO</a>
-        <a href="#">CURSOS</a>
+        <a href="/temas">CURSOS</a>
         <a href="#">TUTORIAS</a>
         <a href="#">BLOG</a>
         <a href="#">CONTACTO</a>

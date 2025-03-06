@@ -1,0 +1,86 @@
+/* Estilos generales */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+.pagination {
+  margin-top: auto; /* Asegura que la paginación se empuje hacia abajo */
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px; /* Espaciado entre los botones y el final de la página */
+}
+
+.pagination button {
+  margin: 5px;
+  padding: 10px;
+  background-color: gray;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.pagination button:disabled {
+  background-color: blue; /* Botón deshabilitado con un color diferente */
+  cursor: default; /* Deshabilitar el cursor para los botones inactivos */
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: darkgray; /* Color al pasar el ratón sobre los botones */
+}
+
+
+  
+  /* Estilo de cada tarjeta */
+  .card {
+    width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    background: #fff;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Imagen de la tarjeta */
+  .card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+  
+  /* Contenedor de la información */
+  .card-content {
+    padding: 15px;
+  }
+  
+  /* Título */
+  .card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  /* Descripción */
+  .card-description {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+  }
+  
+  /* Datos extra */
+  .card-info {
+    font-size: 13px;
+    color: #444;
+    margin-bottom: 5px;
+  }
+  

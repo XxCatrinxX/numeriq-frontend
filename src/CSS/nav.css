@@ -1,0 +1,38 @@
+
+
+/* Barra de navegación lateral */
+nav {
+    width: 250px;
+    background-color: var(--primary);
+    padding: 20px;
+    color: white;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    margin-bottom: 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: var(--secondary);
+}
+
+/* Estilos para secciones individuales */
+div {
+    font-size: 20px;
+    color: #333;
+}
