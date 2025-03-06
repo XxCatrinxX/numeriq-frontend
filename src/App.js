@@ -11,6 +11,7 @@ import Tendencias from "./componentes/Tendencias";
 import Temas from "./componentes/temas/Temas";
 import Dashboard from "./componentes/admin/dashboard";
 import Footer from "./componentes/Footer";
+import Detalles from "./componentes/temas/Detalles";
 import Usuarios from "./componentes/admin/usuarios";
 import Login from "./componentes/Login"; // Importa el componente de Login
 import Register from "./componentes/Register"; // Importa el componente de Register
@@ -49,6 +50,7 @@ function App() {
         <Route path="/admin/nuevo-tema" element={<FormTema />} />
         {/* Rutas para la sección de cursos */}
         <Route path="/temas" element={<Temas />} />
+        <Route path="/temas/detalles/:idTema" element={<Detalles />} />
         {/* Rutas para la sección de usuarios */}
         <Route path="/admin/usuarios" element={<Usuarios />} />  
         {/* Rutas para las otras secciones */}

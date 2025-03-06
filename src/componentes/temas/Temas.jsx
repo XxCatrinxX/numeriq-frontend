@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { obtenerTemas, fetchCategoriasYNiveles, fetchCursos } from "../../api";
+import { obtenerTemas } from "../../api";
+import { useNavigate } from "react-router-dom"; // Importa useNavigate
 import "../../CSS/TemasCard.css"; // Importa los estilos
 
 const ListaTemas = () => {
@@ -13,6 +14,8 @@ const ListaTemas = () => {
   const [precioMin, setPrecioMin] = useState("");
   const [precioMax, setPrecioMax] = useState("");
 
+  const navigate = useNavigate(); // Hook para redireccionar
+
   const aplicarFiltros = () => {
     console.log("Aplicando filtros con:", { categoria, nivel, precioMin, precioMax });
     // Aquí puedes hacer una nueva llamada a la API con los filtros aplicados
@@ -25,11 +28,11 @@ const ListaTemas = () => {
         const response = await obtenerTemas(paginaActual);
         console.log("Datos recibidos desde la API:", response);
 
-        if(response && Array.isArray(response.data)) {
+        if (response && Array.isArray(response.data)) {
           setTemas(response.data);
           setTotalPaginas(response.last_page);
           setError(null);
-        }else{
+        } else {
           setError("No se encontraron datos en la respuesta");
         }
       } catch (err) {
@@ -96,7 +99,12 @@ const ListaTemas = () => {
       {error && <p>{error}</p>}
       {temas.length > 0 ? (
         temas.map((tema) => (
-          <div className="card" key={tema.idTema}>
+          <div
+            className="card"
+            key={tema.idTema}
+            onClick={() => navigate(`/temas/detalles/${tema.idTema}`)} // Redirige al hacer clic
+            style={{ cursor: "pointer" }} // Cambia el cursor a puntero
+          >
             <img
               src={tema.imagenTema}
               alt={tema.nombreTema}

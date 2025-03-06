@@ -47,13 +47,19 @@ export const registrarUsuario = async (datos) => {
   }
 };
 
-export const obtenerTemaPorId = async (id) => {
+export const obtenerTemaPorId = async (idTema) => {
   try {
-    const response = await fetch(`${API_URL}/temas/${id}`);
-    if (!response.ok) throw new Error("No se pudo obtener el tema");
-    return await response.json();
+    // Realiza la solicitud a la API con el ID del tema
+    const response = await axios.get(`${API_URL}/temas/${idTema}/recursos`, {
+      params: { id: idTema } // Usamos el ID en los parámetros de la solicitud
+    });
+
+    // Asegúrate de que la respuesta tenga la estructura correcta
+    return response.data; // Asegúrate de que 'response.data' tenga la propiedad que necesitas
+
   } catch (error) {
-    console.error(error);
-    throw error;
+    console.error("Error al obtener el tema:", error);
+    throw error; // Propaga el error
   }
 };
+
