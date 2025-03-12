@@ -1,106 +1,85 @@
-import { useState, useEffect } from "react";
-
-const cursos = [
-  {
-    id: 1,
-    titulo: "Química Básica",
-    descripcion: "Aprende los fundamentos de la química y sus aplicaciones.",
-    nivel: "Principiante",
-    estudiantes: 1200,
-    likes: 320,
-    precio: "$50 MXN",
-    imagen: "/image/quimica.jpg",
-  },
-  {
-    id: 2,
-    titulo: "Matemáticas Avanzadas",
-    descripcion: "Explora el mundo de los números y las ecuaciones complejas.",
-    nivel: "Avanzado",
-    estudiantes: 850,
-    likes: 275,
-    precio: "$70 MXN",
-    imagen: "/image/mate.jpg",
-  },
-  {
-    id: 3,
-    titulo: "Física Cuántica",
-    descripcion: "Descubre los misterios de la física a nivel subatómico.",
-    nivel: "Intermedio",
-    estudiantes: 950,
-    likes: 300,
-    precio: "$60 MXN",
-    imagen: "/image/fisica.webp",
-  },
-];
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { obtenerTemas } from "../api";
 
 export default function CarruselCursos() {
-  const [indice, setIndice] = useState(0);
-
-  const siguienteCurso = () => {
-    setIndice((prev) => (prev + 1) % cursos.length);
-  };
+  const [temas, setTemas] = useState([]);
+  const [paginaActual, setPaginaActual] = useState(3); // Controlamos la página actual
+  const [totalPaginas, setTotalPaginas] = useState(0); // Controlamos el total de páginas
+  const [error, setError] = useState(null); // Manejamos errores
+  const [indice, setIndice] = useState(0); // Para manejar el índice del carrusel
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const intervalo = setInterval(siguienteCurso, 3000);
-    return () => clearInterval(intervalo);
-  }, []);
+    const cargarTemas = async () => {
+      try {
+        console.log("Cargando temas para la página:", paginaActual);
+        const response = await obtenerTemas(paginaActual);
+        console.log("Datos recibidos desde la API:", response);
+
+        if (response && Array.isArray(response.data)) {
+          setTemas(response.data);
+          setTotalPaginas(response.last_page); // Establecemos la cantidad total de páginas
+          setError(null);
+        } else {
+          setError("No se encontraron datos en la respuesta");
+        }
+      } catch (err) {
+        setError("Error al obtener los temas");
+        console.error("Error al hacer la solicitud", err);
+      }
+    };
+
+    cargarTemas();
+  }, [paginaActual]);
+
+  const siguienteCurso = () => {
+    setIndice((prev) => (prev + 3) % temas.length); // Cambiar a 3 temas a la vez
+  };
+
+  // Configurar el intervalo para cambiar los temas automáticamente
+  useEffect(() => {
+    const intervalo = setInterval(siguienteCurso, 3000); // Cambio de tema cada 3 segundos
+    return () => clearInterval(intervalo); // Limpiar el intervalo cuando el componente se desmonte
+  }, [temas]); // Solo ejecuta el intervalo cuando los temas cambien
 
   return (
-    <div className="carrusel-container">
-      <h2 className="titulo">Cursos Destacados</h2>
-      <div className="carrusel">
-        <div className="tarjeta">
-          <img src={cursos[indice].imagen} alt={cursos[indice].titulo} />
-          <h3>{cursos[indice].titulo}</h3>
-          <p>{cursos[indice].descripcion}</p>
-          <p><strong>Nivel:</strong> {cursos[indice].nivel}</p>
-          <p><strong>Estudiantes:</strong> {cursos[indice].estudiantes}</p>
-          <p><strong>Likes:</strong> ❤️ {cursos[indice].likes}</p>
-          <button className="comprar">Comprar - {cursos[indice].precio}</button>
+      <div className="recomendaciones">
+        <h2>Cursos Destacados</h2>
+        <div className="contenedor-tarjetas">
+          {temas.slice(indice, indice + 3).map((tema, index) =>  (
+              <div
+                  className="card"
+                  key={tema.idTema}
+                  onClick={() => navigate(`/temas/detalles/${tema.idTema}`)} // Redirige al hacer clic
+                  style={{ cursor: "pointer" }} // Cambia el cursor a puntero
+              >
+                <img
+                    src={tema.imagenTema}
+                    alt={tema.nombreTema}
+                    onError={(e) => (e.target.src = "/fallback-image.jpg")} // Imagen por defecto si falla
+                />
+                <div className="card-content">
+                  <h3 className="card-title">{tema.nombreTema}</h3>
+                  <p className="card-description">{tema.descripcionTema}</p>
+                  <p className="card-info">Usuarios: {tema.numUsuarios}</p>
+                  <p className="card-info">Precio: ${tema.precio}</p>
+                  <p className="card-info">Categoría: {tema.idCategoria}</p>
+                  <p className="card-info">Nivel: {tema.idNivel}</p>
+                  <p className="card-info">
+                    Horas de Contenido: {tema.horasContenido}
+                  </p>
+                  <p className="card-info">Idioma: {tema.idioma}</p>
+                  <p className="card-info">
+                    Certificado: {tema.certificado ? "Sí" : "No"}
+                  </p>
+                </div>
+              </div>
+          ))}
         </div>
-      </div>
-      <style jsx>{`
-        .carrusel-container {
-          text-align: center;
-          padding: 20px;
-        }
-        .titulo {
-          color: #0B6FB6;
-          font-size: 2rem;
-          margin-bottom: 20px;
-        }
-        .carrusel {
-          display: flex;
-          justify-content: center;
-          overflow: hidden;
-        }
-        .tarjeta {
-          background: #F8C22B;
-          padding: 20px;
-          border-radius: 10px;
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-          max-width: 300px;
-          transition: transform 0.5s ease-in-out;
-        }
-        .tarjeta img {
-          width: 100%;
-          border-radius: 5px;
-        }
-        .comprar {
-          background: #F18C21;
-          color: white;
-          border: none;
-          padding: 10px;
-          font-weight: bold;
-          cursor: pointer;
-          margin-top: 10px;
-          transition: background 0.3s;
-        }
-        .comprar:hover {
-          background: #D67B1D;
-        }
-      `}</style>
-    </div>
-  );
-}
 
+        {/* Mostrar error si existe */}
+        {error && <p className="error">{error}</p>}
+      </div>
+  );
+};
