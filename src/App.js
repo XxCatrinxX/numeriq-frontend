@@ -13,6 +13,7 @@ import Dashboard from "./componentes/admin/dashboard";
 import Footer from "./componentes/Footer";
 import Detalles from "./componentes/temas/Detalles";
 import Usuarios from "./componentes/admin/usuarios";
+import Estudiante from "./componentes/estudiante/inicio";
 import Login from "./componentes/Login"; // Importa el componente de Login
 import Register from "./componentes/Register"; // Importa el componente de Register
 import FormTema from "./componentes/temas/FormTema"; // Importa el componente de FormTema
@@ -53,6 +54,8 @@ function App() {
         <Route path="/temas/detalles/:idTema" element={<Detalles />} />
         {/* Rutas para la sección de usuarios */}
         <Route path="/admin/usuarios" element={<Usuarios />} />  
+
+        <Route path="/estudiante" element={<Estudiante />} />
         {/* Rutas para las otras secciones */}
         <Route
           path="/"
@@ -67,6 +70,7 @@ function App() {
               <Footer />
             </>
           }
+
         />
       </Routes>
     </main>

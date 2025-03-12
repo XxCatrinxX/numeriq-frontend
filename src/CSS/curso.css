@@ -1,0 +1,95 @@
+.curso-container {
+    font-family: Arial, sans-serif;
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .curso-header {
+    background: linear-gradient(to right, #68b0ab, #206a5d);
+    color: white;
+    padding: 15px;
+    text-align: center;
+    border-radius: 8px;
+  }
+  
+  .curso-content {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .video-placeholder {
+    background: #ddd;
+    width: 60%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .curso-sidebar {
+    width: 40%;
+  }
+  
+  .progreso-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .progreso-bar {
+    background: #ccc;
+    height: 10px;
+    width: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  .progreso-fill {
+    height: 100%;
+    background: #f4a261;
+    transition: width 0.5s ease;
+  }
+  
+  .progreso-text {
+    margin-top: 5px;
+    font-size: 14px;
+  }
+  
+  .curso-temario h3 {
+    margin-top: 15px;
+  }
+  
+  .curso-temario ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .curso-temario li {
+    background: #f8f9fa;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 5px;
+  }
+  
+  .curso-footer {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .certificado-btn {
+    background: #2a9d8f;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .certificado-btn:hover {
+    background: #21867a;
+  }
+  
