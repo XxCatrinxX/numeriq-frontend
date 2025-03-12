@@ -1,0 +1,77 @@
+/* Contenedor principal del tema */
+.detalle-tema {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Título principal del tema */
+  .detalle-tema h1 {
+    font-size: 2.5em;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Sección de recursos */
+  .recursos {
+    margin-top: 30px;
+  }
+  
+  .recursos h2 {
+    font-size: 1.8em;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  /* Estilo para los recursos individuales */
+  .recursos ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .recursos li {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .recursos li h3 {
+    font-size: 1.5em;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  
+  .recursos li p {
+    font-size: 1.2em;
+    color: #777;
+    margin-bottom: 10px;
+  }
+  
+  /* Enlace de recursos */
+  .recursos li a {
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.1em;
+  }
+  
+  .recursos li a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Mensaje de carga o error */
+  .detalle-tema p {
+    font-size: 1.2em;
+    color: #555;
+    text-align: center;
+    margin-top: 20px;
+  }
+  

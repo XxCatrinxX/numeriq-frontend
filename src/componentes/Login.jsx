@@ -1,16 +1,33 @@
 // src/Login.js
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';  // Importa Link
+import { Link, useNavigate } from 'react-router-dom';  // Importa Link
 import { FaGoogle, FaFacebook, FaApple } from 'react-icons/fa';  // Importa los iconos de React Icons
+import axios from 'axios';  // Importa axios
 
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();  // Declara navigate
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Lógica para manejar el inicio de sesión aquí
+
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/api/login', {
+        email,
+        password,
+      });
+
+      if(response.data.token){
+        localStorage.setItem('token', response.data.token);
+        navigate('/estudiante');
+      }
+    } catch (error) {
+      console.error('Error al iniciar sesión', error);
+      alert('Error al iniciar sesión');
+    }
   };
 
   return (
