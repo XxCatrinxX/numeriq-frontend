@@ -1,56 +1,18 @@
 import axios from 'axios';
-<<<<<<< HEAD
-// Asegúrate de que coincide con tu Laravel API
-const API_URL = "http://127.0.0.1:8000/api";
-=======
  // Asegúrate de que coincide con tu Laravel API
 export const API_URL = "http://127.0.0.1:8000/api";
->>>>>>> b968d21d4ff8defa7bbe5aaef0b8e6404b680bfe
 
-// Crear instancia de Axios
 const api = axios.create({
-  baseURL: "http://127.0.0.1:8000",
-  withCredentials: true, // Importante para enviar cookies (como XSRF-TOKEN)
+  baseURL: "http://127.0.0.1:8000/", // Cambia a la URL de tu API
+  withCredentials: true,
   headers: {
-<<<<<<< HEAD
-      "Content-Type": "application/json",
-  },
-});
-
-// Función para obtener el CSRF token
-export const obtenerCsrfToken = async () => {
-  try {
-    await api.get('/sanctum/csrf-cookie'); // Esto configurará la cookie CSRF
-    console.log('✅ CSRF token establecido');
-  } catch (error) {
-    console.error('❌ Error al obtener CSRF token:', error);
-    throw error;
-  }
-};
-=======
     'Content-Type': 'application/json',
     'Accept': 'application/json',
     'X-Requested-With': 'XMLHttpRequest',
   },
 });
 
->>>>>>> b968d21d4ff8defa7bbe5aaef0b8e6404b680bfe
 
-// Función de login
-export const loginUsuario = async (email, password) => {
-  try {
-    const respuesta = await api.post(`${API_URL}/login`, { email, password });
-    if (respuesta.data.token) {
-      console.log("✅ Token de acceso recibido:", respuesta.data.token);
-      return respuesta.data.token;
-    } else {
-      throw new Error("❌ Token de acceso no recibido.");
-    }
-  } catch (error) {
-    console.error("❌ Error al iniciar sesión:", error.response?.data || error);
-    throw error;
-  }
-};
 export default api;
 
 export const obtenerTemas = async (pagina) => {
@@ -89,5 +51,29 @@ export const obtenerTemaPorId = async (idTema) => {
   } catch (error) {
     console.error("Error al obtener el tema:", error);
     throw error; // Propaga el error
+  }
+};
+
+export const obtenerUsuarioAutenticado = async () => {
+  try {
+    // Obtener el token del localStorage
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      throw new Error('No se encontró el token de autenticación.');
+    }
+
+    // Realizar la solicitud GET a la API con el token Bearer
+    const respuesta = await axios.get(`${API_URL}/perfil`, {
+      headers: {
+        'Authorization': `Bearer ${token}`, // Aquí agregas el token en el header
+        'Accept': 'application/json',
+      },
+    });
+
+    return respuesta.data;  // Devuelve los datos del usuario
+  } catch (error) {
+    console.error('Error obteniendo la información del usuario:', error);
+    throw error;  // Lanza el error para que lo manejes donde lo llames
   }
 };

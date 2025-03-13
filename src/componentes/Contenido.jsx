@@ -17,7 +17,7 @@ export default function Contenido() {
           <button>Explorar cursos</button>
         </div>
         <div className="img-estudiante">
-          <img src="../../public/image/estudiante.png" alt="Foto del estudiante" />
+          <img src="/image/estudiante.png" alt="Foto del estudiante" />
         </div>
       </div>
 

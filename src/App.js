@@ -2,12 +2,10 @@
 import "./App.css";
 import Header from "./componentes/Header";
 import Contenido from "./componentes/Contenido";
-import MenuLateral from "./componentes/MenuLateral";
 import CarruselCursos from "./componentes/CarruselCursos";
 import Cursos from "./componentes/estudiante/cursos";
 import Deseos from "./componentes/estudiante/deseos";
 import Ajustes from "./componentes/estudiante/ajustes";
-import Nav from "./componentes/estudiante/nav";
 import Recomendaciones from "./componentes/Recomendaciones";
 import Beneficios from "./componentes/Beneficios";
 import Testimonios from "./componentes/Testimonios";
@@ -23,19 +21,12 @@ import Login from "./componentes/Login"; // Importa el componente de Login
 import Register from "./componentes/Register"; // Importa el componente de Register
 import FormTema from "./componentes/temas/FormTema"; // Importa el componente de FormTema
 import { Routes, Route } from "react-router-dom"; // Importa Routes y Route para la navegación
-import React, { useEffect } from "react";
-import api from "./api"; // Importa la instancia de axios
-<<<<<<< HEAD
-import { CsrfProvider } from "./CsrfContext";
+import React from "react";
 
 function App() {
-=======
-function App() {
 
->>>>>>> b968d21d4ff8defa7bbe5aaef0b8e6404b680bfe
 
   return (
-    <CsrfProvider>
     <main>
       <Header />
 
@@ -77,7 +68,6 @@ function App() {
         />
       </Routes>
     </main>
-    </CsrfProvider>
   );
 }
 
