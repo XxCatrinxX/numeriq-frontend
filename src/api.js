@@ -1,26 +1,17 @@
 import axios from 'axios';
  // Asegúrate de que coincide con tu Laravel API
-const API_URL = "http://127.0.0.1:8000/api";
+export const API_URL = "http://127.0.0.1:8000/api";
 
 const api = axios.create({
   baseURL: "http://127.0.0.1:8000/", // Cambia a la URL de tu API
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
-    Accept: 'application/json',
-  },  // Esto es necesario para enviar cookies como el CSRF token
+    'Accept': 'application/json',
+    'X-Requested-With': 'XMLHttpRequest',
+  },
 });
 
-// Actualiza la configuración para incluir el token CSRF en las cabeceras
-api.interceptors.request.use((config) => {
-  const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
-  if (csrfToken) {
-    config.headers['X-CSRF-TOKEN'] = csrfToken; // Asegúrate de que el token esté en los encabezados
-  }
-  return config;
-}, (error) => {
-  return Promise.reject(error);
-});
 
 export default api;
 

@@ -20,21 +20,8 @@ import FormTema from "./componentes/temas/FormTema"; // Importa el componente de
 import { Routes, Route } from "react-router-dom"; // Importa Routes y Route para la navegación
 import React, { useEffect } from "react";
 import api from "./api"; // Importa la instancia de axios
-
 function App() {
-  useEffect(() => {
-    // Solicita el token CSRF al backend al cargar la app
-    const getCsrfToken = async () => {
-      try {
-        await api.get("/sanctum/csrf-cookie"); // Laravel devuelve automáticamente el token CSRF como una cookie
-        console.log("CSRF token obtenido correctamente");
-      } catch (error) {
-        console.error("Error al obtener el CSRF token:", error);
-      }
-    };
 
-    getCsrfToken();
-  }, []);
 
   return (
     <main>
@@ -53,7 +40,7 @@ function App() {
         <Route path="/temas" element={<Temas />} />
         <Route path="/temas/detalles/:idTema" element={<Detalles />} />
         {/* Rutas para la sección de usuarios */}
-        <Route path="/admin/usuarios" element={<Usuarios />} />  
+        <Route path="/admin/usuarios" element={<Usuarios />} />
 
         <Route path="/estudiante" element={<Estudiante />} />
         {/* Rutas para las otras secciones */}
