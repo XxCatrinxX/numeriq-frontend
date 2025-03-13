@@ -4,12 +4,17 @@ import Header from "./componentes/Header";
 import Contenido from "./componentes/Contenido";
 import MenuLateral from "./componentes/MenuLateral";
 import CarruselCursos from "./componentes/CarruselCursos";
+import Cursos from "./componentes/estudiante/cursos";
+import Deseos from "./componentes/estudiante/deseos";
+import Ajustes from "./componentes/estudiante/ajustes";
+import Nav from "./componentes/estudiante/nav";
 import Recomendaciones from "./componentes/Recomendaciones";
 import Beneficios from "./componentes/Beneficios";
 import Testimonios from "./componentes/Testimonios";
 import Tendencias from "./componentes/Tendencias";
 import Temas from "./componentes/temas/Temas";
 import Dashboard from "./componentes/admin/dashboard";
+import Tutores from "./componentes/estudiante/tutores";
 import Footer from "./componentes/Footer";
 import Detalles from "./componentes/temas/Detalles";
 import Usuarios from "./componentes/admin/usuarios";
@@ -20,23 +25,12 @@ import FormTema from "./componentes/temas/FormTema"; // Importa el componente de
 import { Routes, Route } from "react-router-dom"; // Importa Routes y Route para la navegación
 import React, { useEffect } from "react";
 import api from "./api"; // Importa la instancia de axios
+import { CsrfProvider } from "./CsrfContext";
 
 function App() {
-  useEffect(() => {
-    // Solicita el token CSRF al backend al cargar la app
-    const getCsrfToken = async () => {
-      try {
-        await api.get("/sanctum/csrf-cookie"); // Laravel devuelve automáticamente el token CSRF como una cookie
-        console.log("CSRF token obtenido correctamente");
-      } catch (error) {
-        console.error("Error al obtener el CSRF token:", error);
-      }
-    };
-
-    getCsrfToken();
-  }, []);
 
   return (
+    <CsrfProvider>
     <main>
       <Header />
 
@@ -56,6 +50,10 @@ function App() {
         <Route path="/admin/usuarios" element={<Usuarios />} />  
 
         <Route path="/estudiante" element={<Estudiante />} />
+        <Route path="/cursos" element={<Cursos />} />
+        <Route path="/tutores" element={<Tutores />} />
+        <Route path="/deseos" element={<Deseos />} />
+        <Route path="/ajustes" element={<Ajustes />} />
         {/* Rutas para las otras secciones */}
         <Route
           path="/"
@@ -74,6 +72,7 @@ function App() {
         />
       </Routes>
     </main>
+    </CsrfProvider>
   );
 }
 

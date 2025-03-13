@@ -1,21 +1,21 @@
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
-@import url('https://fonts.cdnfonts.com/css/nexa');
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css");
+@import url("https://fonts.cdnfonts.com/css/nexa");
 
 body {
-  font-family: 'Nexa', sans-serif;
+  font-family: "Nexa", sans-serif;
   margin: 0;
   padding: 0;
 }
 
 :root {
-  --primary: #28ABDB;
-  --secondary: #F8C22B;
-  --Success: #0B6FB6;
-  --Danger: #F18C21;
-  --Warning: #F49D27;
-  --Info: #D6DA2C;
-  --Light: #D5D5D5;
-  --blaco: #FFFFFF;
+  --primary: #28abdb;
+  --secondary: #f8c22b;
+  --Success: #0b6fb6;
+  --Danger: #f18c21;
+  --Warning: #f49d27;
+  --Info: #d6da2c;
+  --Light: #d5d5d5;
+  --blaco: #ffffff;
 }
 
 /* Estilos del header */
@@ -160,19 +160,27 @@ body {
     font-size: 1em;
   }
 
-  .nav-item, .auth-link {
+  .nav-item,
+  .auth-link {
     padding: 8px 15px;
     font-size: 0.85em;
   }
 }
 
-
 .bienvenida {
   background: linear-gradient(to right, var(--primary), var(--Warning));
   color: black;
   padding: 40px;
-  border-radius: 0 0 10px 10px;
-  text-align: center;
+  display: flex;
+  justify-content: space-between; /* Distribuye el contenido a los extremos */
+  align-items: center;
+}
+
+.bienvenida .texto {
+  display: flex;
+  flex-direction: column; /* Alinea los elementos en columna */
+  justify-content: start;
+  align-items: start;
 }
 
 .bienvenida h1 {
@@ -190,8 +198,6 @@ body {
   margin-top: 10px;
   line-height: 1.6;
   max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .bienvenida button {
@@ -207,18 +213,17 @@ body {
 }
 
 .bienvenida button:hover {
-  background-color: #D67B1D;
+  background-color: #d67b1d;
 }
 
-.bienvenida-imagen {
+.img-estudiante {
   display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.bienvenida-imagen img {
-  max-width: 300px;
+  justify-content: end;
+  align-items: end;
+  height: auto;
+  width: auto;
   border-radius: 10px;
+
 }
 
 .video-container {
@@ -250,7 +255,6 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--Warning);
 }
-
 
 .recomendaciones {
   padding: 20px;
@@ -492,14 +496,14 @@ button:hover {
 
 /* src/estilos.css */
 .login-container {
-  background-color: #28ABDB;
+  background-color: #28abdb;
   color: white;
   padding: 40px;
   border-radius: 10px;
   max-width: 400px;
   margin: 0 auto;
   text-align: center;
-  margin-top: 50px;  /* Agregar espacio entre el header y el formulario */
+  margin-top: 50px; /* Agregar espacio entre el header y el formulario */
 }
 
 .login-container h2 {
@@ -526,7 +530,7 @@ button:hover {
 }
 
 .btn-login {
-  background-color: #F49D27;
+  background-color: #f49d27;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -583,14 +587,14 @@ button:hover {
 
 /* src/estilos.css */
 .register-container {
-  background-color: #28ABDB;
+  background-color: #28abdb;
   color: white;
   padding: 40px;
   border-radius: 10px;
   max-width: 400px;
   margin: 0 auto;
   text-align: center;
-  margin-top: 50px;  /* Agregar espacio entre el header y el formulario de registro */
+  margin-top: 50px; /* Agregar espacio entre el header y el formulario de registro */
 }
 
 .register-container h2 {
@@ -617,7 +621,7 @@ button:hover {
 }
 
 .btn-register {
-  background-color: #F49D27;
+  background-color: #f49d27;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -658,7 +662,6 @@ button:hover {
 .btn-social svg {
   margin-right: 8px; /* Ajusta el espacio entre el icono y el texto */
 }
-
 
 .footer-text {
   margin-top: 20px;

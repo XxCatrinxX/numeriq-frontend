@@ -3,6 +3,7 @@ import { obtenerTemas } from "../../api";
 import { useNavigate } from "react-router-dom";
 import "../../CSS/estudiante/estudiante.css";
 import Footer from "../Footer";
+import Nav from "./nav"
 
 export default function Inicio() {
   const [temas, setTemas] = useState([]);
@@ -21,35 +22,8 @@ export default function Inicio() {
   const navigate = useNavigate();
   return (
     <>
-      <section className="info-estudiante">
-        <img src="ruta/a/la/foto.jpg" alt="Foto del estudiante" />
-        <p>Nombre estudiante</p> <br />
-        <p>Rol-Institucion</p>
-        <button>Conviertete En Instructor</button>
-      </section>
 
-      <nav className="nav-estudiante">
-        <ul>
-          <li>
-            <a href="/estudiante">Dashboard</a>
-          </li>
-          <li>
-            <a href="#">Cursos</a>
-          </li>
-          <li>
-            <a href="#">Profesores</a>
-          </li>
-          <li>
-            <a href="#">Mensajes</a>
-          </li>
-          <li>
-            <a href="#">Lista de Deseos</a>
-          </li>
-          <li>
-            <a href="#">Ajustes</a>
-          </li>
-        </ul>
-      </nav>
+    <Nav />
 
       <h1>Dashboard</h1>
 

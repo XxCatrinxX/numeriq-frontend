@@ -1,27 +1,42 @@
 import axios from 'axios';
- // Asegúrate de que coincide con tu Laravel API
+// Asegúrate de que coincide con tu Laravel API
 const API_URL = "http://127.0.0.1:8000/api";
 
+// Crear instancia de Axios
 const api = axios.create({
-  baseURL: "http://127.0.0.1:8000/", // Cambia a la URL de tu API
-  withCredentials: true,
+  baseURL: "http://127.0.0.1:8000",
+  withCredentials: true, // Importante para enviar cookies (como XSRF-TOKEN)
   headers: {
-    'Content-Type': 'application/json',
-    Accept: 'application/json',
-  },  // Esto es necesario para enviar cookies como el CSRF token
+      "Content-Type": "application/json",
+  },
 });
 
-// Actualiza la configuración para incluir el token CSRF en las cabeceras
-api.interceptors.request.use((config) => {
-  const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
-  if (csrfToken) {
-    config.headers['X-CSRF-TOKEN'] = csrfToken; // Asegúrate de que el token esté en los encabezados
+// Función para obtener el CSRF token
+export const obtenerCsrfToken = async () => {
+  try {
+    await api.get('/sanctum/csrf-cookie'); // Esto configurará la cookie CSRF
+    console.log('✅ CSRF token establecido');
+  } catch (error) {
+    console.error('❌ Error al obtener CSRF token:', error);
+    throw error;
   }
-  return config;
-}, (error) => {
-  return Promise.reject(error);
-});
+};
 
+// Función de login
+export const loginUsuario = async (email, password) => {
+  try {
+    const respuesta = await api.post(`${API_URL}/login`, { email, password });
+    if (respuesta.data.token) {
+      console.log("✅ Token de acceso recibido:", respuesta.data.token);
+      return respuesta.data.token;
+    } else {
+      throw new Error("❌ Token de acceso no recibido.");
+    }
+  } catch (error) {
+    console.error("❌ Error al iniciar sesión:", error.response?.data || error);
+    throw error;
+  }
+};
 export default api;
 
 export const obtenerTemas = async (pagina) => {
@@ -62,4 +77,3 @@ export const obtenerTemaPorId = async (idTema) => {
     throw error; // Propaga el error
   }
 };
-
