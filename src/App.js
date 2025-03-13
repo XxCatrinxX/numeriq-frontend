@@ -25,9 +25,14 @@ import FormTema from "./componentes/temas/FormTema"; // Importa el componente de
 import { Routes, Route } from "react-router-dom"; // Importa Routes y Route para la navegación
 import React, { useEffect } from "react";
 import api from "./api"; // Importa la instancia de axios
+<<<<<<< HEAD
 import { CsrfProvider } from "./CsrfContext";
 
 function App() {
+=======
+function App() {
+
+>>>>>>> b968d21d4ff8defa7bbe5aaef0b8e6404b680bfe
 
   return (
     <CsrfProvider>
@@ -47,7 +52,7 @@ function App() {
         <Route path="/temas" element={<Temas />} />
         <Route path="/temas/detalles/:idTema" element={<Detalles />} />
         {/* Rutas para la sección de usuarios */}
-        <Route path="/admin/usuarios" element={<Usuarios />} />  
+        <Route path="/admin/usuarios" element={<Usuarios />} />
 
         <Route path="/estudiante" element={<Estudiante />} />
         <Route path="/cursos" element={<Cursos />} />

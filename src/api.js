@@ -1,12 +1,18 @@
 import axios from 'axios';
+<<<<<<< HEAD
 // Asegúrate de que coincide con tu Laravel API
 const API_URL = "http://127.0.0.1:8000/api";
+=======
+ // Asegúrate de que coincide con tu Laravel API
+export const API_URL = "http://127.0.0.1:8000/api";
+>>>>>>> b968d21d4ff8defa7bbe5aaef0b8e6404b680bfe
 
 // Crear instancia de Axios
 const api = axios.create({
   baseURL: "http://127.0.0.1:8000",
   withCredentials: true, // Importante para enviar cookies (como XSRF-TOKEN)
   headers: {
+<<<<<<< HEAD
       "Content-Type": "application/json",
   },
 });
@@ -21,6 +27,14 @@ export const obtenerCsrfToken = async () => {
     throw error;
   }
 };
+=======
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'X-Requested-With': 'XMLHttpRequest',
+  },
+});
+
+>>>>>>> b968d21d4ff8defa7bbe5aaef0b8e6404b680bfe
 
 // Función de login
 export const loginUsuario = async (email, password) => {
