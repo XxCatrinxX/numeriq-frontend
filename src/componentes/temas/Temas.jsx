@@ -76,98 +76,101 @@ const ListaTemas = () => {
   };
 
   return (
-    <div className="container">
-      {/* FILTROS */}
-      <div className="filters">
-        <h3>Filtrar</h3>
-        <div>
-          <label>Categoría:</label>
-          <select onChange={(e) => setCategoria(e.target.value)} value={categoria}>
-            <option value="">Todas</option>
-            {categorias.map((cat) => (
-              <option key={cat.idCategoria} value={cat.idCategoria}>
-                {cat.nombreCategoria}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div>
-          <label>Nivel:</label>
-          <select onChange={(e) => setNivel(e.target.value)} value={nivel}>
-            <option value="">Todos</option>
-            {niveles.map((niv) => (
-              <option key={niv.idNivel} value={niv.idNivel}>
-                {niv.nombreNivel}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div>
-          <label>Precio Mínimo:</label>
-          <input type="number" value={precioMin} onChange={(e) => setPrecioMin(e.target.value)} />
-        </div>
-
-        <div>
-          <label>Precio Máximo:</label>
-          <input type="number" value={precioMax} onChange={(e) => setPrecioMax(e.target.value)} />
-        </div>
-      </div>
-
-      {/* LISTADO DE TEMAS */}
-      {error && <p>{error}</p>}
-      {temas.length > 0 ? (
-        temas.map((tema) => (
-          <div
-            className="card"
-            key={tema.idTema}
-            onClick={() => navigate(`/temas/detalles/${tema.idTema}`)}
-            style={{ cursor: "pointer" }}
-          >
-            <img src={tema.imagenTema} alt={tema.nombreTema} onError={(e) => (e.target.src = "/fallback-image.jpg")} />
-            <div className="card-content">
-              <h3 className="card-title">{tema.nombreTema}</h3>
-              <p className="card-description">{tema.descripcionTema}</p>
-              <p className="card-info">Usuarios: {tema.numUsuarios}</p>
-              <p className="card-info">Likes: {tema.likes}</p>
-              <p className="card-info">Precio: ${tema.precio}</p>
-              <p className="card-info">Categoría: {tema.idCategoria}</p>
-              <p className="card-info">Nivel: {tema.idNivel}</p>
-              <p className="card-info">Horas de Contenido: {tema.horasContenido}</p>
-              <p className="card-info">Idioma: {tema.idioma}</p>
-              <p className="card-info">Certificado: {tema.certificado ? "Sí" : "No"}</p>
-            </div>
+      <div className="container">
+        {/* FILTROS */}
+        <div className="filters">
+          <h3>Filtrar</h3>
+          <div>
+            <label>Categoría:</label>
+            <select onChange={(e) => setCategoria(e.target.value)} value={categoria}>
+              <option value="">Todas</option>
+              {categorias.map((cat) => (
+                  <option key={cat.idCategoria} value={cat.idCategoria}>
+                    {cat.nombreCategoria}
+                  </option>
+              ))}
+            </select>
           </div>
-        ))
-      ) : (
-        <p>No se encontraron temas.</p>
-      )}
 
-      {/* PAGINACIÓN */}
-      {totalPaginas > 1 && (
-        <div className="pagination">
-          {Array.from({ length: totalPaginas }, (_, i) => i + 1).map((num) => (
-            <button
-              key={num}
-              onClick={() => cambiarPagina(num)}
-              disabled={num === paginaActual}
-              style={{
-                margin: "5px",
-                padding: "10px",
-                backgroundColor: num === paginaActual ? "blue" : "gray",
-                color: "white",
-                border: "none",
-                cursor: num === paginaActual ? "default" : "pointer",
-              }}
-            >
-              {num}
-            </button>
-          ))}
+          <div>
+            <label>Nivel:</label>
+            <select onChange={(e) => setNivel(e.target.value)} value={nivel}>
+              <option value="">Todos</option>
+              {niveles.map((niv) => (
+                  <option key={niv.idNivel} value={niv.idNivel}>
+                    {niv.nombreNivel}
+                  </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label>Precio Mínimo:</label>
+            <input type="number" value={precioMin} onChange={(e) => setPrecioMin(e.target.value)} />
+          </div>
+
+          <div>
+            <label>Precio Máximo:</label>
+            <input type="number" value={precioMax} onChange={(e) => setPrecioMax(e.target.value)} />
+          </div>
         </div>
-      )}
-    </div>
+
+        {/* LISTADO DE TEMAS */}
+        {error && <p>{error}</p>}
+        <div className="temas-listado">
+          {temas.length > 0 ? (
+              temas.map((tema) => (
+                  <div
+                      className="card"
+                      key={tema.idTema}
+                      onClick={() => navigate(`/temas/detalles/${tema.idTema}`)}
+                      style={{ cursor: "pointer" }}
+                  >
+                    <img src={tema.imagenTema} alt={tema.nombreTema} onError={(e) => (e.target.src = "/fallback-image.jpg")} />
+                    <div className="card-content">
+                      <h3 className="card-title">{tema.nombreTema}</h3>
+                      <p className="card-description">{tema.descripcionTema}</p>
+                      <p className="card-info">Usuarios: {tema.numUsuarios}</p>
+                      <p className="card-info">Likes: {tema.likes}</p>
+                      <p className="card-info">Precio: ${tema.precio}</p>
+                      <p className="card-info">Categoría: {tema.idCategoria}</p>
+                      <p className="card-info">Nivel: {tema.idNivel}</p>
+                      <p className="card-info">Horas de Contenido: {tema.horasContenido}</p>
+                      <p className="card-info">Idioma: {tema.idioma}</p>
+                      <p className="card-info">Certificado: {tema.certificado ? "Sí" : "No"}</p>
+                    </div>
+                  </div>
+              ))
+          ) : (
+              <p>No se encontraron temas.</p>
+          )}
+        </div>
+
+        {/* PAGINACIÓN */}
+        {totalPaginas > 1 && (
+            <div className="pagination">
+              {Array.from({ length: totalPaginas }, (_, i) => i + 1).map((num) => (
+                  <button
+                      key={num}
+                      onClick={() => cambiarPagina(num)}
+                      disabled={num === paginaActual}
+                      style={{
+                        margin: "5px",
+                        padding: "10px",
+                        backgroundColor: num === paginaActual ? "blue" : "gray",
+                        color: "white",
+                        border: "none",
+                        cursor: num === paginaActual ? "default" : "pointer",
+                      }}
+                  >
+                    {num}
+                  </button>
+              ))}
+            </div>
+        )}
+      </div>
   );
+
 };
 
 export default ListaTemas;
