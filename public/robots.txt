@@ -1,2 +1,6 @@
+HEAD
+
+# https://www.robotstxt.org/robotstxt.html
+ 77cfaad (Primer commit: Proyecto React)
 User-agent: *
 Disallow:
