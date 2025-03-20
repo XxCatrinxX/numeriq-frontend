@@ -3,6 +3,8 @@ import { obtenerTemas } from "../../api";
 import { useNavigate } from "react-router-dom";
 import axios from "axios"; // Importamos axios para hacer solicitudes
 import "../../CSS/TemasCard.css";
+import {agregarAlCarrito} from "../../api";
+
 
 const ListaTemas = () => {
   const [temas, setTemas] = useState([]);
@@ -17,6 +19,7 @@ const ListaTemas = () => {
   const [nivel, setNivel] = useState("");
   const [precioMin, setPrecioMin] = useState("");
   const [precioMax, setPrecioMax] = useState("");
+
 
   const navigate = useNavigate();
 
@@ -74,7 +77,15 @@ const ListaTemas = () => {
   const cambiarPagina = (numero) => {
     setPaginaActual(numero);
   };
-
+  // Función para manejar la acción de agregar al carrito
+  const manejarAgregarAlCarrito = async (idTema) => {
+    try {
+      const resultado = await agregarAlCarrito(idTema);
+      alert("El tema se ha agregado al carrito exitosamente.");
+    } catch (error) {
+      alert("Hubo un error al agregar el tema al carrito.");
+    }
+  };
   return (
       <div className="container">
         {/* FILTROS */}
@@ -133,11 +144,19 @@ const ListaTemas = () => {
                       <p className="card-info">Usuarios: {tema.numUsuarios}</p>
                       <p className="card-info">Likes: {tema.likes}</p>
                       <p className="card-info">Precio: ${tema.precio}</p>
-                      <p className="card-info">Categoría: {tema.idCategoria}</p>
                       <p className="card-info">Nivel: {tema.idNivel}</p>
                       <p className="card-info">Horas de Contenido: {tema.horasContenido}</p>
                       <p className="card-info">Idioma: {tema.idioma}</p>
                       <p className="card-info">Certificado: {tema.certificado ? "Sí" : "No"}</p>
+                      <button
+                          className="agregar-al-carrito-btn"
+                          onClick={(e) => {
+                            e.stopPropagation(); // Prevenir que se dispare el onClick de la card
+                            manejarAgregarAlCarrito(tema.idTema);
+                          }}
+                      >
+                        Agregar al Carrito
+                      </button>
                     </div>
                   </div>
               ))
@@ -149,7 +168,7 @@ const ListaTemas = () => {
         {/* PAGINACIÓN */}
         {totalPaginas > 1 && (
             <div className="pagination">
-              {Array.from({ length: totalPaginas }, (_, i) => i + 1).map((num) => (
+              {Array.from({length: totalPaginas}, (_, i) => i + 1).map((num) => (
                   <button
                       key={num}
                       onClick={() => cambiarPagina(num)}

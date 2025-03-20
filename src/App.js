@@ -21,6 +21,7 @@ import Login from "./componentes/Login"; // Importa el componente de Login
 import Register from "./componentes/Register"; // Importa el componente de Register
 import FormTema from "./componentes/temas/FormTema"; // Importa el componente de FormTema
 import { Routes, Route } from "react-router-dom"; // Importa Routes y Route para la navegación
+import Carrito from "./componentes/Carrito";
 import React from "react";
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
         <Route path="/tutores" element={<Tutores />} />
         <Route path="/deseos" element={<Deseos />} />
         <Route path="/ajustes" element={<Ajustes />} />
+        <Route path="/carrito" element={<Carrito />} />
         {/* Rutas para las otras secciones */}
         <Route
           path="/"
