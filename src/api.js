@@ -28,6 +28,22 @@ export const obtenerTemas = async (pagina) => {
   }
 };
 
+export const crearTema = async (formData) => {
+  try {
+    const res = await axios.post("http://127.0.0.1:8000/api/crearTema", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return res.data;
+  } catch (error) {
+    console.error("Error al crear el tema:", error);
+    throw error;
+  }
+};
+
+
+
 export const registrarUsuario = async (datos) => {
   try {
     const respuesta = await axios.post(`${API_URL}/register`, datos); // Se incluye el CSRF token automáticamente
@@ -53,6 +69,45 @@ export const obtenerTemaPorId = async (idTema) => {
     throw error; // Propaga el error
   }
 };
+
+export const obtenerDeseos = async () => {
+  try {
+    const token = localStorage.getItem('token');
+    const response = await axios.get(`${API_URL}/deseos`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error obteniendo los deseos:", error);
+    throw error;
+  }
+};
+
+export const agregarDeseo = async (idUsuario, idTema) => {
+  try {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      throw new Error("Token de autenticación no disponible");
+    }
+
+    const response = await axios.post(`${API_URL}/deseos`, {
+      idUsuario,
+      idTema,
+      fechaAgregado: new Date().toISOString(),
+    }, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error agregando a la lista de deseos:", error);
+    throw error;
+  }
+};
+
 
 export const obtenerUsuarioAutenticado = async () => {
   try {

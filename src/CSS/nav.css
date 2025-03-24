@@ -1,38 +1,103 @@
-
-
-/* Barra de navegación lateral */
-nav {
-    width: 250px;
-    background-color: var(--primary);
-    padding: 20px;
-    color: white;
+/* Sección de información del admin */
+.info-admin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #ddd;
+  width: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+  transition: transform 0.3s ease-in-out;
 }
 
-nav ul {
-    list-style: none;
-    padding: 0;
+.info-admin img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin-bottom: 10px;
 }
 
-nav ul li {
-    margin-bottom: 15px;
+.info-admin p {
+  margin: 5px 0;
+  font-size: 16px;
+  text-align: center;
 }
 
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-    display: block;
-    padding: 10px;
-    border-radius: 5px;
-    transition: background 0.3s;
+.info-admin .info-separada {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #666;
 }
 
-nav ul li a:hover {
-    background-color: var(--secondary);
+/* Barra de navegación */
+.nav-admin {
+  width: 100%;
+  background-color: var(--primary);
+  color: white;
+  height: auto;
+  overflow-x: auto;
+  display: flex;
+  justify-content: center;
+  transition: transform 0.3s ease-in-out;
 }
 
-/* Estilos para secciones individuales */
-div {
-    font-size: 20px;
-    color: #333;
+.nav-admin ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-admin li {
+  margin: 0;
+}
+
+.nav-admin a {
+  color: white;
+  text-decoration: none;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.nav-admin a:hover {
+  background-color: var(--secondary);
+}
+
+.nav-admin a i {
+  margin-right: 10px;
+}
+
+/* Contenido principal */
+.main-content {
+  padding: 20px;
+  width: 100%;
+}
+
+/* Animaciones */
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.info-admin,
+.nav-admin {
+  animation: slideIn 0.3s forwards;
 }

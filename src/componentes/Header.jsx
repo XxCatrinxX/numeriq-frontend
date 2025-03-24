@@ -1,11 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
 import {Link} from "react-router-dom";
-import {API_URL} from "../api";
+import {API_URL, obtenerTemas} from "../api";
+import { useNavigate } from 'react-router-dom';
 
 export default function Header() {
     const [usuario, setUsuario] = useState(null);
     const [menuAbierto, setMenuAbierto] = useState(false);
+    const [busqueda, setBusqueda] = useState('');
+    const [resultados, setResultados] = useState([]);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -17,12 +22,33 @@ export default function Header() {
                 .catch(() => setUsuario(null));
         }
     }, []);
+
+
     const handleLogout = () => {
         localStorage.removeItem('token');
         setUsuario(null);
         window.location.href = '/';
     };
     const toggleMenu = () => setMenuAbierto(!menuAbierto);
+
+    const handleBuscar = async () => {
+        const data = await obtenerTemas(1);
+        console.log("Respuesta de la api: ", data);
+
+        const temas = data.data || []; 
+
+        const filtrados = temas.filter(tema =>
+            tema.nombreTema?.toLowerCase().includes(busqueda.toLowerCase())
+        );        
+        
+        navigate('/resultados', { state: { temas: filtrados } });
+    }
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            handleBuscar();
+        }
+    };
 
     return (
         <header className="header">
@@ -32,14 +58,18 @@ export default function Header() {
             </div>
 
             <div className="search-bar">
-                <input type="text" placeholder="Buscar..."/>
+                <input type="text" 
+                placeholder="Buscar..."
+                value={busqueda}
+                onChange={e => setBusqueda(e.target.value)}
+                onKeyDown={handleKeyDown}
+                />
                 <button><i className="fas fa-search"></i></button>
             </div>
 
             <nav className="nav-links">
                 <Link to="/" className="nav-item">INICIO</Link>
                 <Link to="/temas" className="nav-item">CURSOS</Link>
-                <Link to="#" className="nav-item">TUTORIAS</Link>
                 <Link to="#" className="nav-item">BLOG</Link>
                 <Link to="#" className="nav-item">CONTACTO</Link>
 
@@ -60,6 +90,17 @@ export default function Header() {
                     </>
                 )}
             </nav>
+
+            {/* Aquí puedes mostrar resultados en un dropdown o en una página aparte */}
+            {resultados.length > 0 && (
+                <div className="resultados-dropdown">
+                    {resultados.map((tema) => (
+                        <Link key={tema.id} to={`/temas/${tema.id}`} className="resultado-item">
+                            {tema.nombre}
+                        </Link>
+                    ))}
+                </div>
+            )}
         </header>
     );
 }

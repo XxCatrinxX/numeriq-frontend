@@ -1,8 +1,17 @@
 import React from "react";
 import CarruselCursos from "./CarruselCursos";
 import Recomendaciones from "./Recomendaciones";
+import { useNavigate } from "react-router-dom";
+
 
 export default function Contenido() {
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/temas");
+  };
+
   return (
     <>
       {/*Bienvenida*/}
@@ -14,7 +23,7 @@ export default function Contenido() {
           <p> En NumerIQ, <br /> ofrecemos capacitación en línea de alta calidad
           para estudiantes de nivel secundario y universitario.
           </p>
-          <button>Explorar cursos</button>
+          <button onClick={handleClick}>Explorar cursos</button>
         </div>
         <div className="img-estudiante">
           <img src="/image/estudiante.png" alt="Foto del estudiante" />

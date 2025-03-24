@@ -16,6 +16,8 @@ import Tutores from "./componentes/estudiante/tutores";
 import Footer from "./componentes/Footer";
 import Detalles from "./componentes/temas/Detalles";
 import Usuarios from "./componentes/admin/usuarios";
+import TemasAdmin from "./componentes/admin/temas";
+import Resultados from "./componentes/Resultados";
 import Estudiante from "./componentes/estudiante/inicio";
 import Login from "./componentes/Login"; // Importa el componente de Login
 import Register from "./componentes/Register"; // Importa el componente de Register
@@ -38,18 +40,21 @@ function App() {
         {/* Rutas para el dashboard de administrador */}
         <Route path="/admin" element={<Dashboard />} />
         {/* Rutas para el formulario de nuevo tema */}
-        <Route path="/admin/nuevo-tema" element={<FormTema />} />
+        <Route path="/nuevo-tema" element={<FormTema />} />
+        <Route path="/temas-admin" element={<TemasAdmin />} />
         {/* Rutas para la sección de cursos */}
         <Route path="/temas" element={<Temas />} />
         <Route path="/temas/detalles/:idTema" element={<Detalles />} />
         {/* Rutas para la sección de usuarios */}
-        <Route path="/admin/usuarios" element={<Usuarios />} />
+        <Route path="/usuarios" element={<Usuarios />} />
 
         <Route path="/estudiante" element={<Estudiante />} />
         <Route path="/cursos" element={<Cursos />} />
         <Route path="/tutores" element={<Tutores />} />
         <Route path="/deseos" element={<Deseos />} />
         <Route path="/ajustes" element={<Ajustes />} />
+        <Route path="/resultados" element={<Resultados />} />
+
         {/* Rutas para las otras secciones */}
         <Route
           path="/"

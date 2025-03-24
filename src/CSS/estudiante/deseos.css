@@ -1,52 +1,53 @@
 .lista-deseos {
-    padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  .lista-deseos h1 {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .lista-deseos ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .lista-deseos li {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .lista-deseos h2 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-  }
-  
-  .lista-deseos p {
-    font-size: 1rem;
-    margin: 5px 0;
-  }
-  
-  .lista-deseos button {
-    background-color: var(--primary);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .lista-deseos button:hover {
-    background-color: var(--primary-dark);
-  }
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.lista-deseos h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.lista-deseos ul {
+  list-style: none;
+  padding: 0;
+}
+
+.lista-deseos li {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.lista-deseos h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.lista-deseos p {
+  font-size: 1rem;
+  margin: 5px 0;
+}
+
+.lista-deseos button {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 10px;
+}
+
+.lista-deseos button:hover {
+  background-color: var(--primary-dark);
+}
