@@ -63,8 +63,8 @@
 }
 
 .lista-temas button:hover {
-  background-color: var(--primary-dark);
-} 
+  background-color: black;
+}
 
 /* Filtros */
 .filters {
@@ -89,7 +89,7 @@
 .card {
   display: flex;
   width: 350px;
-  height: 550px;
+  height: auto;
   flex-direction: column;
   background-color: #fff;
   border-radius: 8px;

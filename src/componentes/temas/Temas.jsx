@@ -101,7 +101,7 @@ const ListaTemas = () => {
     setPaginaActual(numero);
   };
 
-  
+
   // Función para manejar la acción de agregar al carrito
   const manejarAgregarAlCarrito = async (idTema) => {
     try {
@@ -120,7 +120,7 @@ const ListaTemas = () => {
       alert("Hubo un error al agregar a la lista de deseos.");
     }
   };
-  
+
   return (
     <div className="container">
       {/* FILTROS */}
@@ -233,29 +233,30 @@ const ListaTemas = () => {
                   Certificado: {tema.certificado ? "Sí" : "No"}
                 </p>
                 <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleAgregarDeseo(tema.idTema);
-                  }}
+                    className="agregar-al-carrito-btn"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      manejarAgregarAlCarrito(tema.idTema);
+                    }}
                 >
-                  <i className="fas fa-heart"></i> Agregar a la lista de deseos
+                  Agregar al Carrito
                 </button>
               </div>
             </div>
           ))
         ) : (
-          <p>No se encontraron temas.</p>
+            <p>No se encontraron temas.</p>
         )}
       </div>
 
       {/* PAGINACIÓN */}
       {totalPaginas > 1 && (
-        <div className="pagination">
-          {Array.from({ length: totalPaginas }, (_, i) => i + 1).map((num) => (
-            <button
-              key={num}
-              onClick={() => cambiarPagina(num)}
-              disabled={num === paginaActual}
+          <div className="pagination">
+            {Array.from({length: totalPaginas}, (_, i) => i + 1).map((num) => (
+                <button
+                    key={num}
+                    onClick={() => cambiarPagina(num)}
+                    disabled={num === paginaActual}
               style={{
                 margin: "5px",
                 padding: "10px",
