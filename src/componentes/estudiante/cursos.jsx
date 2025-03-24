@@ -150,16 +150,7 @@ export default function Cursos() {
                   <button
                       key={num}
                       onClick={() => cambiarPagina(num)}
-                      disabled={num === paginaActual}
-                      style={{
-                        margin: "5px",
-                        padding: "10px",
-                        backgroundColor: num === paginaActual ? "blue" : "gray",
-                        color: "white",
-                        border: "none",
-                        cursor: num === paginaActual ? "default" : "pointer",
-                      }}
-                  >
+                      disabled={num === paginaActual}>
                     {num}
                   </button>
               ))}

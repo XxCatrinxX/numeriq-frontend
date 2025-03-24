@@ -33,7 +33,8 @@
   display: flex;
   justify-content: space-around;
   margin: 0;
-  padding: 0;
+  padding: 15px;
+  background-color: var(--primary);
 }
 
 .nav-estudiante li {
@@ -41,10 +42,14 @@
 }
 
 .nav-estudiante a {
-  color: white;
+  color: black;
   text-decoration: none;
   padding: 10px 20px;
   display: block;
+}
+
+.nav-estudiante a:hover {
+  background-color: var(--Success);
 }
 
 
