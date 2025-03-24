@@ -132,3 +132,71 @@ export const obtenerUsuarioAutenticado = async () => {
     throw error;  // Lanza el error para que lo manejes donde lo llames
   }
 };
+
+
+export const agregarAlCarrito = async (idTema, cantidad = 1) => {
+  try {
+  const token = localStorage.getItem('token');
+    const response = await axios.post(
+        `${API_URL}/carrito/agregar`,
+        { idTema, cantidad },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+    );
+    return response.data;
+
+  } catch (error) {
+    console.error("Error al agregar el tema al carrito:", error);
+    throw error;
+  }
+}
+
+export const obtenerCarrito = async () => {
+  try {
+    const token = localStorage.getItem('token');
+    const response = await axios.get(`${API_URL}/carrito`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error al obtener el carrito:", error);
+    throw error;
+  }
+}
+
+// Eliminar un tema del carrito
+export const eliminarTemaDelCarrito = async (idTema) => {
+  try {
+    const token = localStorage.getItem('token');
+    const response = await axios.delete(`${API_URL}/carrito/eliminar/${idTema}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error al eliminar el tema del carrito:", error);
+    throw error;
+  }
+};
+
+// Vaciar carrito completo
+export const vaciarCarrito = async () => {
+  try {
+    const token = localStorage.getItem('token');
+    const response = await axios.delete(`${API_URL}/carrito/vaciar`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error al vaciar el carrito:", error);
+    throw error;
+  }
+};

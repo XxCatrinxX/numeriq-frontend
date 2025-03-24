@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { obtenerTemas, agregarDeseo, obtenerUsuarioAutenticado } from "../../api";
+import {
+  obtenerTemas,
+  agregarDeseo,
+  obtenerUsuarioAutenticado,
+} from "../../api";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../../CSS/TemasCard.css";
+import { agregarAlCarrito } from "../../api";
 
 const ListaTemas = () => {
   const [temas, setTemas] = useState([]);
@@ -80,50 +85,42 @@ const ListaTemas = () => {
     fetchUsuario();
   }, []);
 
-  const cambiarPagina = (numero) => {
-    setPaginaActual(numero);
-  };
-
-  const obtenerFechaActual = () => {
-    const fecha = new Date();
-    const anio = fecha.getFullYear();
-    const mes = (fecha.getMonth() + 1).toString().padStart(2, '0');
-    const dia = fecha.getDate().toString().padStart(2, '0');
-    return `${anio}-${mes}-${dia}`;
-  };
-
-  const handleAgregarDeseo = async (idTema) => {
-    if (!usuario) {
-      alert("Debes iniciar sesión para agregar a la lista de deseos");
-      return;
-    }
-    const fecha = obtenerFechaActual();
-    if (!idTema || !usuario.idUsuario || !fecha) {
-      alert("Faltan datos necesarios para agregar el deseo");
-      return;
-    }
-
-    try {
-      await agregarDeseo(usuario.idUsuario, idTema, fecha);
-      alert("Tema agregado a la lista de deseos");
-    } catch (error) {
-      console.error("Error agregando a la lista de deseos:", error);
-      alert("Hubo un error al agregar a la lista de deseos");
-    }
-  };
-
   // Obtener el nombre de la categoría por id
   const obtenerNombreCategoria = (id) => {
-    const cat = categorias.find(c => c.idCategoria === id);
+    const cat = categorias.find((c) => c.idCategoria === id);
     return cat ? cat.nombreCategoria : "Sin categoría";
   };
 
   // Obtener el nombre del nivel por id
   const obtenerNombreNivel = (id) => {
-    const niv = niveles.find(n => n.idNivel === id);
+    const niv = niveles.find((n) => n.idNivel === id);
     return niv ? niv.nombreNivel : "Sin nivel";
   };
 
+  const cambiarPagina = (numero) => {
+    setPaginaActual(numero);
+  };
+
+  
+  // Función para manejar la acción de agregar al carrito
+  const manejarAgregarAlCarrito = async (idTema) => {
+    try {
+      const resultado = await agregarAlCarrito(idTema);
+      alert("El tema se ha agregado al carrito exitosamente.");
+    } catch (error) {
+      alert("Hubo un error al agregar el tema al carrito.");
+    }
+  };
+
+  const handleAgregarDeseo = async (idTema) => {
+    try {
+      await agregarDeseo(idTema);
+      alert("Se agregó a la lista de deseos correctamente.");
+    } catch (error) {
+      alert("Hubo un error al agregar a la lista de deseos.");
+    }
+  };
+  
   return (
     <div className="container">
       {/* FILTROS */}
@@ -131,10 +128,15 @@ const ListaTemas = () => {
         <h3>Filtrar</h3>
         <div>
           <label>Categoría:</label>
-          <select onChange={(e) => setCategoria(e.target.value)} value={categoria}>
+          <select
+            onChange={(e) => setCategoria(e.target.value)}
+            value={categoria}
+          >
             <option value="">Todas</option>
             {categorias.map((cat) => (
-              <option key={cat.idCategoria} value={cat.idCategoria}>{cat.nombreCategoria}</option>
+              <option key={cat.idCategoria} value={cat.idCategoria}>
+                {cat.nombreCategoria}
+              </option>
             ))}
           </select>
         </div>
@@ -144,19 +146,29 @@ const ListaTemas = () => {
           <select onChange={(e) => setNivel(e.target.value)} value={nivel}>
             <option value="">Todos</option>
             {niveles.map((niv) => (
-              <option key={niv.idNivel} value={niv.idNivel}>{niv.nombreNivel}</option>
+              <option key={niv.idNivel} value={niv.idNivel}>
+                {niv.nombreNivel}
+              </option>
             ))}
           </select>
         </div>
 
         <div>
           <label>Precio Mínimo:</label>
-          <input type="number" value={precioMin} onChange={(e) => setPrecioMin(e.target.value)} />
+          <input
+            type="number"
+            value={precioMin}
+            onChange={(e) => setPrecioMin(e.target.value)}
+          />
         </div>
 
         <div>
           <label>Precio Máximo:</label>
-          <input type="number" value={precioMax} onChange={(e) => setPrecioMax(e.target.value)} />
+          <input
+            type="number"
+            value={precioMax}
+            onChange={(e) => setPrecioMax(e.target.value)}
+          />
         </div>
       </div>
 
@@ -171,26 +183,35 @@ const ListaTemas = () => {
               onClick={() => navigate(`/temas/detalles/${tema.idTema}`)}
               style={{ cursor: "pointer" }}
             >
-              {tema.miniaturaTema.endsWith('.mp4') ? (
-  <video
-    src={tema.miniaturaTema.startsWith('http') || tema.miniaturaTema.startsWith('/') ? tema.miniaturaTema : `/videos/${tema.miniaturaTema}`}
-    muted
-    loop
-    preload="metadata"
-    onMouseEnter={(e) => e.target.play()}
-    onMouseLeave={(e) => e.target.pause()}
-    style={{ width: "100%", borderRadius: "10px" }}
-  >
-    Tu navegador no soporta la reproducción de video.
-  </video>
-) : (
-  <img
-    src={tema.miniaturaTema.startsWith('http') || tema.miniaturaTema.startsWith('/') ? tema.miniaturaTema : `/imagenes/${tema.miniaturaTema}`}
-    alt={tema.nombreTema}
-    onError={(e) => (e.target.src = "/fallback-image.jpg")}
-  />
-)}
-
+              {tema.miniaturaTema.endsWith(".mp4") ? (
+                <video
+                  src={
+                    tema.miniaturaTema.startsWith("http") ||
+                    tema.miniaturaTema.startsWith("/")
+                      ? tema.miniaturaTema
+                      : `/videos/${tema.miniaturaTema}`
+                  }
+                  muted
+                  loop
+                  preload="metadata"
+                  onMouseEnter={(e) => e.target.play()}
+                  onMouseLeave={(e) => e.target.pause()}
+                  style={{ width: "100%", borderRadius: "10px" }}
+                >
+                  Tu navegador no soporta la reproducción de video.
+                </video>
+              ) : (
+                <img
+                  src={
+                    tema.miniaturaTema.startsWith("http") ||
+                    tema.miniaturaTema.startsWith("/")
+                      ? tema.miniaturaTema
+                      : `/image/${tema.miniaturaTema}`
+                  }
+                  alt={tema.nombreTema}
+                  onError={(e) => (e.target.src = "/fallback-image.jpg")}
+                />
+              )}
 
               <div className="card-content">
                 <h3 className="card-title">{tema.nombreTema}</h3>
@@ -198,12 +219,25 @@ const ListaTemas = () => {
                 <p className="card-info">Usuarios: {tema.numUsuarios}</p>
                 <p className="card-info">Likes: {tema.likes}</p>
                 <p className="card-info">Precio: ${tema.precio}</p>
-                <p className="card-info">Categoría: {obtenerNombreCategoria(tema.idCategoria)}</p>
-                <p className="card-info">Nivel: {obtenerNombreNivel(tema.idNivel)}</p>
-                <p className="card-info">Horas de Contenido: {tema.horasContenido}</p>
+                <p className="card-info">
+                  Categoría: {obtenerNombreCategoria(tema.idCategoria)}
+                </p>
+                <p className="card-info">
+                  Nivel: {obtenerNombreNivel(tema.idNivel)}
+                </p>
+                <p className="card-info">
+                  Horas de Contenido: {tema.horasContenido}
+                </p>
                 <p className="card-info">Idioma: {tema.idioma}</p>
-                <p className="card-info">Certificado: {tema.certificado ? "Sí" : "No"}</p>
-                <button onClick={(e) => { e.stopPropagation(); handleAgregarDeseo(tema.idTema); }}>
+                <p className="card-info">
+                  Certificado: {tema.certificado ? "Sí" : "No"}
+                </p>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleAgregarDeseo(tema.idTema);
+                  }}
+                >
                   <i className="fas fa-heart"></i> Agregar a la lista de deseos
                 </button>
               </div>

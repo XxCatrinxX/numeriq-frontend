@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import axios from "axios";
 import {Link} from "react-router-dom";
 import {API_URL, obtenerTemas} from "../api";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from 'react-router-dom';
 
 export default function Header() {
@@ -72,7 +74,11 @@ export default function Header() {
                 <Link to="/temas" className="nav-item">CURSOS</Link>
                 <Link to="#" className="nav-item">BLOG</Link>
                 <Link to="#" className="nav-item">CONTACTO</Link>
-
+                {usuario && (
+                    <Link to="/carrito" className="nav-item carrito-icon">
+                        <FontAwesomeIcon icon={faShoppingCart} />
+                    </Link>
+                )}
                 {usuario ? (
                     <div className={`user-info ${menuAbierto ? 'active' : ''}`} onClick={toggleMenu}>
                         <img src={usuario.foto || '/default-avatar.png'} alt="Foto de perfil" className="user-avatar"/>
