@@ -12,7 +12,6 @@ export default function Nav() {
       try {
         const response = await obtenerUsuarioAutenticado(); // Aquí deberías hacer la llamada a tu API
         setUsuario(response);
-        console.log(response); // Para ver la respuesta en la consola
       } catch (error) {
         console.error("Error al obtener el usuario", error);
       }
