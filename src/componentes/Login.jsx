@@ -12,23 +12,45 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Lógica para manejar el inicio de sesión aquí
-
+  
     try {
+      // Paso 1: Login
       const response = await axios.post('http://127.0.0.1:8000/api/login', {
         email,
         password,
       });
-
+  
       if(response.data.token){
-        localStorage.setItem('token', response.data.token);
-        navigate('/estudiante');
+        const token = response.data.token;
+  
+        // Guardar el token en localStorage
+        localStorage.setItem('token', token);
+  
+        // Paso 2: Obtener perfil (rol)
+        const perfilResponse = await axios.get('http://127.0.0.1:8000/api/perfil', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+  
+        const rol = perfilResponse.data.rol;
+        localStorage.setItem('rol', rol);
+  
+        // Paso 3: Redirigir según rol
+        if (rol === 'profesor') {
+          navigate('/admin');
+        } else if (rol === 'estudiante') {
+          navigate('/estudiante');
+        } else {
+          alert('Rol no reconocido');
+        }
       }
     } catch (error) {
       console.error('Error al iniciar sesión', error);
       alert('Error al iniciar sesión');
     }
   };
+  
 
   return (
     <div className="login-container">

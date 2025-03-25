@@ -61,7 +61,7 @@ export default function Navadmin() {
             </Link>
           </li>
           <li>
-            <Link to="/deseos">
+            <Link to="/usuarios">
               <FontAwesomeIcon icon={faUser} /> Usuarios
             </Link>
           </li>

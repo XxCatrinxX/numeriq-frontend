@@ -43,7 +43,7 @@ const Recomendaciones = () => {
                   style={{ cursor: "pointer" }} // Cambia el cursor a puntero
               >
                 <img
-                    src={tema.imagenTema}
+                    src={tema.miniaturaTema}
                     alt={tema.nombreTema}
                     onError={(e) => (e.target.src = "/fallback-image.jpg")} // Imagen por defecto si falla
                 />

@@ -96,7 +96,7 @@ export default function Carrito() {
                       style={{cursor: "pointer"}}
                   >
                     <img
-                        src={item.tema.imagenTema}
+                        src={item.tema.miniaturaTema}
                         alt={item.tema.nombreTema}
                         onError={(e) => (e.target.src = "/fallback-image.jpg")}
                     />

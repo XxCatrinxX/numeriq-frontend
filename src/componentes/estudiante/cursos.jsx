@@ -122,7 +122,7 @@ export default function Cursos() {
                       key={tema.idTema}
                       onClick={() => navigate(`/temas/detalles/${tema.idTema}`)}
                   >
-                    <img src={tema.imagenTema} alt={tema.nombreTema}
+                    <img src={tema.miniaturaTema} alt={tema.nombreTema}
                          onError={(e) => (e.target.src = "/fallback-image.jpg")}/>
                     <div className="card-content">
                       <h3 className="card-title">{tema.nombreTema}</h3>

@@ -1,0 +1,62 @@
+/* Estilos para la tabla de usuarios */
+.table-container {
+    padding: 20px;
+    margin-top: 20px;
+  }
+  
+  .table-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .usuarios-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .usuarios-table th,
+  .usuarios-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .usuarios-table th {
+    background-color: var(--secondary);
+    font-weight: bold;
+  }
+  
+  .usuarios-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .usuarios-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .error {
+    color: red;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilos para los botones de acción */
+  .delete-button,
+  .role-button {
+    margin: 5px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .delete-button {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .role-button {
+    background-color: #4CAF50;
+    color: white;
+  }

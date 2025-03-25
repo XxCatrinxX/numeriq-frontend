@@ -89,7 +89,7 @@
 .card {
   display: flex;
   width: 350px;
-  height: 550px;
+  height: auto;
   flex-direction: column;
   background-color: #fff;
   border-radius: 8px;
