@@ -42,7 +42,31 @@ export const crearTema = async (formData) => {
   }
 };
 
+export const obtenerRecursos = async (idTema) => {
+  try {
+    const respuesta = await axios.get(`${API_URL}/temas/${idTema}/recursos`);
+    return respuesta.data;
+  } catch (error) {
+    console.error("Error obteniendo recursos:", error);
+    return [];
+  }
+};
 
+export const agregarReurso = async (idTema, formData) => {
+  try {
+    const token = localStorage.getItem('token');
+    const response = await axios.post(`${API_URL}/temas/${idTema}/recursos`, formData, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data'
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error al agregar el recurso:", error.response?.data || error);
+    throw error;
+  }
+};
 
 export const registrarUsuario = async (datos) => {
   try {

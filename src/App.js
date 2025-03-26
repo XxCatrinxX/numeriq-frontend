@@ -13,6 +13,7 @@ import Tendencias from "./componentes/Tendencias";
 import Temas from "./componentes/temas/Temas";
 import Dashboard from "./componentes/admin/dashboard";
 import Tutores from "./componentes/estudiante/tutores";
+import FormRecursos from "./componentes/admin/formrecursos";
 import Footer from "./componentes/Footer";
 import Detalles from "./componentes/temas/Detalles";
 import Usuarios from "./componentes/admin/usuarios";
@@ -38,11 +39,15 @@ function App() {
         {/* Ruta para el formulario de Login */}
         <Route path="/register" element={<Register />} />{" "}
         {/* Ruta para el formulario de Register */}
+        
+        
         {/* Rutas para el dashboard de administrador */}
         <Route path="/admin" element={<Dashboard />} />
-        {/* Rutas para el formulario de nuevo tema */}
         <Route path="/nuevo-tema" element={<FormTema />} />
         <Route path="/temas-admin" element={<TemasAdmin />} />
+        <Route path="/temas-admin/recurso/:idTema" element={<FormRecursos />} />
+
+
         {/* Rutas para la sección de cursos */}
         <Route path="/temas" element={<Temas />} />
         <Route path="/temas/detalles/:idTema" element={<Detalles />} />

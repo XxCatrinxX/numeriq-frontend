@@ -39,6 +39,10 @@ const TemasTabla = () => {
     navigate(`/nuevo-tema`, { state: { tema } });
   };
 
+  const manejarRedireccion = (idTema) => {
+    navigate(`/temas-admin/recurso/${idTema}`);
+  };
+
   // Lógica para eliminar
   const handleEliminar = async (idTema) => {
     const confirmacion = window.confirm("¿Estás seguro de eliminar este tema?");
@@ -104,7 +108,7 @@ const TemasTabla = () => {
                     >
                       Eliminar
                     </button>
-                    <button>Agregar Recurso</button>
+                    <button onClick={() => manejarRedireccion(tema.idTema)}>Agregar Recurso</button>
                   </td>
                 </tr>
               ))
