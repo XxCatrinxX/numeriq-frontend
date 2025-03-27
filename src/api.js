@@ -168,12 +168,9 @@ export const obtenerTemaPorId = async (idTema) => {
 
 export const obtenerDeseos = async () => {
   try {
-    const token = localStorage.getItem('token');
-    const response = await axios.get(`${API_URL}/deseos`, {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-      },
-    });
+    const usuario = await obtenerUsuarioAutenticado();
+    const idUsuario = await usuario.idUsuario;
+    const response = await axios.get(`${API_URL}/deseos/${idUsuario}`);
     return response.data;
   } catch (error) {
     console.error("Error obteniendo los deseos:", error);
@@ -181,21 +178,14 @@ export const obtenerDeseos = async () => {
   }
 };
 
-export const agregarDeseo = async (idUsuario, idTema) => {
+export const agregarDeseo = async (idTema) => {
   try {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      throw new Error("Token de autenticación no disponible");
-    }
+    const usuario = await obtenerUsuarioAutenticado();
+    const idUsuario = await usuario.idUsuario;
 
     const response = await axios.post(`${API_URL}/deseos`, {
       idUsuario,
       idTema,
-      fechaAgregado: new Date().toISOString(),
-    }, {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-      },
     });
     return response.data;
   } catch (error) {
