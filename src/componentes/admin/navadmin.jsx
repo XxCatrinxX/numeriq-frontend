@@ -10,9 +10,10 @@ import {
   faHeart,
   faCog,
   faEdit,
+  faList,
 } from "@fortawesome/free-solid-svg-icons";
 
-export default function Navadmin() {
+const Navadmin = () => {
   const [usuario, setUsuario] = useState(null); // Estado para almacenar los datos del usuario
   const navigate = useNavigate();
   useEffect(() => {
@@ -61,6 +62,11 @@ export default function Navadmin() {
             </Link>
           </li>
           <li>
+            <Link to="#">
+              <FontAwesomeIcon icon={faList} /> Todos los Recursos
+            </Link>
+          </li>
+          <li>
             <Link to="/usuarios">
               <FontAwesomeIcon icon={faUser} /> Usuarios
             </Link>
@@ -78,3 +84,5 @@ export default function Navadmin() {
     </>
   );
 }
+
+export default Navadmin;

@@ -1,3 +1,41 @@
+/* Barra de navegación */
+.nav-estudiante {
+  width: auto;
+  background-color: var(--primary);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Añadir sombra */
+}
+
+.nav-estudiante ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  margin: 0;
+  padding: 15px;
+}
+
+.nav-estudiante li {
+  margin: 0;
+}
+
+.nav-estudiante a {
+  color: white; /* Cambiar color del texto a blanco */
+  text-decoration: none;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center; /* Alinear iconos y texto verticalmente */
+  transition: background-color 0.3s ease; /* Suavizar el cambio de color de fondo */
+}
+
+.nav-estudiante a:hover {
+  background-color: var(--Success);
+}
+
+.nav-estudiante i {
+  margin-right: 8px; /* Espacio entre el icono y el texto */
+  font-size: 1.2rem; /* Tamaño del icono */
+}
+
+/* Otros estilos existentes */
 .info-estudiante {
   display: flex;
   align-items: center;
@@ -24,44 +62,20 @@
   margin-left: auto; /* Alinea el botón al lado derecho */
 }
 
-.nav-estudiante {
-  width: auto;
-}
-
-.nav-estudiante ul {
-  list-style: none;
-  display: flex;
-  justify-content: space-around;
-  margin: 0;
-  padding: 15px;
-  background-color: var(--primary);
-}
-
-.nav-estudiante li {
-  margin: 0;
-}
-
-.nav-estudiante a {
-  color: black;
-  text-decoration: none;
-  padding: 10px 20px;
-  display: block;
-}
-
-.nav-estudiante a:hover {
-  background-color: var(--Success);
-}
-
-
+/* Ajustes en el diseño del panel de temas inscritos */
 .panel-estudiante {
-  padding: 20px;
+  padding: 30px 20px;
   border-bottom: 1px solid #ddd;
   display: flex;
+  flex-direction: column;
 }
 
 .panel-estudiante h2 {
   margin-top: 0;
+  font-size: 20px;
+  font-weight: bold;
 }
+
 
 .horas-estudio {
   background-color: #7af3a4ba;
@@ -79,46 +93,46 @@
   height: 50px;
 }
 
-.horas-estudio .titulo{
+.horas-estudio .titulo {
   font-size: 18px;
   font-weight: bold;
   margin: 0 0; /* Espacio entre el título y las etiquetas p */
 }
 
-.horas-estudio .datos{
-    display: flex;
-    flex-direction: column-reverse;
-    margin: 5px 15px;
+.horas-estudio .datos {
+  display: flex;
+  flex-direction: column-reverse;
+  margin: 5px 15px;
 }
 
-
+/* Otros estilos existentes */
 .foto-container {
   position: relative;
-  width: 150px;  /* Tamaño de la foto */
-  height: 150px;  /* Tamaño de la foto */
-  border-radius: 50%;  /* Hace que la foto sea circular */
+  width: 150px; /* Tamaño de la foto */
+  height: 150px; /* Tamaño de la foto */
+  border-radius: 50%; /* Hace que la foto sea circular */
   overflow: hidden;
   display: inline-block;
   background-color: #f3f3f3; /* Fondo gris si no hay foto */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);  /* Agregar sombra sutil */
-  transition: transform 0.3s ease;  /* Suavizar cuando cambia de tamaño */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Agregar sombra sutil */
+  transition: transform 0.3s ease; /* Suavizar cuando cambia de tamaño */
 }
 
 .foto-perfil-container:hover {
-  transform: scale(1.05);  /* Ligeramente agranda el contenedor al hacer hover */
+  transform: scale(1.05); /* Ligeramente agranda el contenedor al hacer hover */
 }
 
 .foto-perfil {
-  object-fit: cover;  /* Asegura que la imagen se ajuste bien dentro del círculo */
-  width: 250px;  /* Hace que la imagen ocupe el 100% del contenedor */
-  height: 250px;  /* Asegura que la imagen tenga el mismo tamaño que el contenedor */
+  object-fit: cover; /* Asegura que la imagen se ajuste bien dentro del círculo */
+  width: 250px; /* Hace que la imagen ocupe el 100% del contenedor */
+  height: 250px; /* Asegura que la imagen tenga el mismo tamaño que el contenedor */
   border-radius: 50%;
   transition: transform 0.4s ease-in-out, filter 0.4s ease;
 }
 
 .foto-perfil-container:hover .foto-perfil {
-  transform: scale(1.1);  /* La imagen crece un poco cuando se pasa el mouse */
-  filter: brightness(1.2);  /* Aumenta el brillo al hacer hover */
+  transform: scale(1.1); /* La imagen crece un poco cuando se pasa el mouse */
+  filter: brightness(1.2); /* Aumenta el brillo al hacer hover */
 }
 
 .foto-overlay {
@@ -126,34 +140,34 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0.6);  /* Fondo semi-transparente */
+  background: rgba(0, 0, 0, 0.6); /* Fondo semi-transparente */
   padding: 12px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0;  /* Empieza oculto */
-  transition: opacity 0.3s ease, transform 0.3s ease;  /* Animación de opacidad y transformación */
+  opacity: 0; /* Empieza oculto */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Animación de opacidad y transformación */
 }
 
 .foto-perfil-container:hover .foto-overlay {
-  opacity: 1;  /* El ícono aparece cuando el contenedor está en hover */
-  transform: translate(-50%, -50%) scale(1.2);  /* Aumenta ligeramente el ícono */
+  opacity: 1; /* El ícono aparece cuando el contenedor está en hover */
+  transform: translate(-50%, -50%) scale(1.2); /* Aumenta ligeramente el ícono */
 }
 
 .foto-overlay i {
-  color: white;  /* Color del ícono */
-  font-size: 30px;  /* Tamaño del ícono */
-  cursor: pointer;  /* Cambiar el cursor cuando pasa sobre el ícono */
-  transition: transform 0.3s ease;  /* Animación para el ícono */
+  color: white; /* Color del ícono */
+  font-size: 30px; /* Tamaño del ícono */
+  cursor: pointer; /* Cambiar el cursor cuando pasa sobre el ícono */
+  transition: transform 0.3s ease; /* Animación para el ícono */
 }
 
 .foto-overlay i:hover {
-  transform: rotate(15deg);  /* Gira el ícono cuando se pasa el ratón sobre él */
+  transform: rotate(15deg); /* Gira el ícono cuando se pasa el ratón sobre él */
 }
 
 .foto-container input[type="file"] {
-  display: none;  /* Ocultar el campo de carga de archivo */
+  display: none; /* Ocultar el campo de carga de archivo */
 }
 
 .modal {
@@ -193,3 +207,105 @@
   background-color: #45a049;
 }
 
+.cardProgress {
+  display: flex;
+  padding: 15px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+  transition: transform 0.3s ease;
+  align-items: center;
+  cursor: pointer;
+  width: 70%; /* Limita el ancho máximo de las tarjetas */
+}
+
+.cardProgress:hover {
+  transform: scale(1.05);
+}
+
+.cardProgress img {
+  width: auto; /* Tamaño más pequeño para la imagen */
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-right: 15px;
+}
+
+.cardProgress-content {
+  flex: 1;
+}
+
+.cardProgress-title {
+  font-size: 18px; /* Fuente más pequeña */
+  font-weight: bold;
+  color: #333;
+}
+
+.cardProgress-description {
+  font-size: 14px;
+  margin: 8px 0;
+  color: #555;
+}
+
+.cardProgress-info {
+  font-size: 12px;
+  margin: 5px 0;
+  color: #777;
+}
+
+.cardProgress-progress-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.cardProgress-progress {
+  width: 80px; /* Tamaño más pequeño para la gráfica circular */
+  height: 80px;
+  background: conic-gradient(#4caf50 0% 70%, #f1f1f1 70% 100%);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px; /* Tamaño de fuente más pequeño */
+  font-weight: bold;
+  color: #333;
+  position: relative;
+}
+
+.cardProgress-progress::after {
+  content: '%';
+  position: absolute;
+  font-size: 10px; /* Tamaño más pequeño para el porcentaje */
+  bottom: 5px;
+}
+
+/* Espaciado adicional en el contenedor */
+.panel-estudiante {
+  padding-bottom: 40px; /* Espacio hacia abajo */
+}
+
+/* Aseguramos que las tarjetas de los temas ocupen el ancho completo disponible */
+@media screen and (max-width: 768px) {
+  .cardProgress {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .cardProgress img {
+    width: 100%;
+    height: auto;
+    margin: 0;
+  }
+
+  .cardProgress-content {
+    margin-top: 10px;
+  }
+
+  .cardProgress-progress-container {
+    justify-content: center;
+    margin-top: 10px;
+  }
+}

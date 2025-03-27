@@ -25,9 +25,15 @@ body {
   justify-content: space-between;
   align-items: center;
   background-color: var(--primary);
-  padding: 10px 30px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 25px 30px;
+  box-shadow: 5px 6px rgba(0, 0, 0, 0.22);
   flex-wrap: wrap;
+}
+
+.Link{
+  text-decoration: none;
+  color: var(--blaco);
+  margin-top: 10px;
 }
 
 .header .logo {

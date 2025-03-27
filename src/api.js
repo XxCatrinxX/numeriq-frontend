@@ -52,7 +52,7 @@ export const obtenerRecursos = async (idTema) => {
   }
 };
 
-export const agregarReurso = async (idTema, formData) => {
+export const agregarRecurso = async (idTema, formData) => {
   try {
     const token = localStorage.getItem('token');
     const response = await axios.post(`${API_URL}/temas/${idTema}/recursos`, formData, {
@@ -68,6 +68,7 @@ export const agregarReurso = async (idTema, formData) => {
   }
 };
 
+
 export const registrarUsuario = async (datos) => {
   try {
     const respuesta = await axios.post(`${API_URL}/register`, datos); // Se incluye el CSRF token automáticamente
@@ -77,6 +78,77 @@ export const registrarUsuario = async (datos) => {
     throw error;
   }
 };
+
+export const inscribirEnTema = async (idTema, datos) => {
+
+  try {
+    const response = await axios.post(`${API_URL}/inscribir/${idTema}`, datos, {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      }
+    });
+
+    return response.data;
+  } catch (error) {
+    console.log("Error al inscribirse en el tema:", error);
+    throw error;
+  }
+};
+
+export const obtenerCursosInscritos = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/inscripciones`, {
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
+      },
+      withCredentials: true
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error al obtener los cursos inscritos:', error);
+    throw error;
+  }
+};
+
+export const obtenerProgreso = async (idTema) => {
+  try {
+    const response = await axios.get(`${API_URL}/progreso/${idTema}`,{
+      headers:{
+        "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error al obtener el progreso:', error);
+    throw error;
+  }
+};
+
+
+export const actualizarProgreso = async (idTema, idRecurso) => {
+  try {
+    // Asegúrate de que idTema sea un valor primitivo, no un objeto.
+    if (typeof idTema !== 'string' && typeof idTema !== 'number') {
+      throw new Error('idTema debe ser un valor numérico o de tipo string');
+    }
+
+    const response = await axios.post(`${API_URL}/progreso/${idTema}`, {
+      idRecurso: idRecurso,  // Envía el idRecurso como parte del cuerpo
+    }, {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token")}`,  // Usa el token de autenticación
+      }
+    });
+
+    return response.data;  // Respuesta de la API con el progreso y estado
+  } catch (error) {
+    console.error('Error al actualizar el progreso:', error);
+    throw error;  // Lanza el error para que puedas manejarlo más arriba
+  }
+};
+
 
 export const obtenerTemaPorId = async (idTema) => {
   try {

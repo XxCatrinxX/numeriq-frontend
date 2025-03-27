@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { agregarReurso } from "../../api";
+import { agregarRecurso } from "../../api";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
@@ -102,7 +102,7 @@ const FormRecursos = () => {
       // Confirmar los datos antes de enviarlos
       console.log([...formData]); // Agregar un registro para ver lo que se está enviando
 
-      await agregarReurso(idTema, formData);
+      await agregarRecurso(idTema, formData);
       alert("Recurso agregado correctamente");
       // Limpiar el formulario
       setTipoRecurso("Video");

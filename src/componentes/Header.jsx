@@ -65,7 +65,7 @@ export default function Header() {
     <header className="header">
       <div className="logo">
         <img src="/image/1738298689262.png" alt="Logo" />
-        <span>NumerIQ</span>
+        <Link className="Link" to={'/'}>NumerIQ</Link>
       </div>
 
       <div className="search-bar">

@@ -33,25 +33,30 @@ export default function Nav() {
 
     </section>
 
-      <nav className="nav-estudiante">
-        <ul>
-          <li>
-            <Link to="/estudiante">Dashboard</Link>
-          </li>
-          <li>
-            <Link to="/cursos">Cursos</Link>
-          </li>
-          <li>
-            <Link to="/tutores">Tutores</Link>
-          </li>
-          <li>
-            <Link to="/deseos">Lista de Deseos</Link>
-          </li>
-          <li>
-            <Link to="/ajustes">Ajustes</Link>
-          </li>
-        </ul>
-      </nav>
+    <nav className="nav-estudiante">
+      <ul>
+        <li>
+          <a href="/dashboard">
+            <i className="fas fa-tachometer-alt"></i> Dashboard
+          </a>
+        </li>
+        <li>
+          <a href="/cursos">
+            <i className="fas fa-book"></i> Cursos
+          </a>
+        </li>
+        <li>
+          <a href="/deseos">
+            <i className="fas fa-heart"></i> Lista de deseos
+          </a>
+        </li>
+        <li>
+          <a href="/ajustes">
+            <i className="fas fa-user"></i> Perfil
+          </a>
+        </li>
+      </ul>
+    </nav>
     </>
   );
 }
